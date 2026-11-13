@@ -32,6 +32,7 @@ All proportions are out of 1000 simulated datasets. "Times more often" compares 
 | **Random slopes analysis** | | | |
 | Likelihood ratio comparing the models with and without by-participant random slopes for consensus independence | 11.35 | `02_random_slope_test.R` | `results/02_random_slope_test.csv` (`lrt`) |
 | SD of participants' independence effects (τ) | 3.45 | `02_random_slope_test.R` | `results/02_random_slope_test.csv` (`tau`) |
+| Group-level independence effect (model without random slopes, as in the original paper) | 1.68 | `02_random_slope_test.R` | `results/02_random_slope_test.csv` (`group_effect`) |
 | Proportion of datasets with no individual variation that give a likelihood ratio at least as large as ours (p) | .004 | `02_random_slope_test.R` | `results/02_random_slope_test.csv` (`p_no_variation`) |
 | Figure 1 | | `05_plot_likelihood_ratios.R` | `results/05_likelihood_ratios.png` |
 | **Model comparison** | | | |

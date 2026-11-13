@@ -13,6 +13,10 @@ compareModels <- function(model_data){
 
 observed <- compareModels(data)
 
+# group-level independence effect (model without random slopes, as in the
+# original paper), for comparison with tau
+group_effect <- fixef(fitModel(formula_null, data))[["consensusindependent"]]
+
 # likelihood ratio in data simulated with no individual variation (run in parallel)
 sim_results <- mclapply(1:n_sim, function(i) compareModels(simulateData()),
                         mc.cores = n_cores, mc.set.seed = TRUE)
@@ -20,6 +24,7 @@ sim_results <- do.call(rbind, sim_results)
 
 results <- data.frame(lrt = observed[["lrt"]],
                       tau = observed[["tau"]],
+                      group_effect = group_effect,
                       p_no_variation = mean(sim_results[, "lrt"] >= observed[["lrt"]]))
 
 results
