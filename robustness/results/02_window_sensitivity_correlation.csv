@@ -1,0 +1,13 @@
+account,window,p_cor_all_near,ratio_cor_all_near
+continuous,0.025,0.177,2.3918918918918917
+no_variation,0.025,0.074,1
+subgroups,0.025,0.148,2
+continuous,0.05,0.342,2.150943396226415
+no_variation,0.05,0.159,1
+subgroups,0.05,0.315,1.9811320754716981
+continuous,0.075,0.487,1.9173228346456692
+no_variation,0.075,0.254,1
+subgroups,0.075,0.475,1.87007874015748
+continuous,0.1,0.614,1.8606060606060606
+no_variation,0.1,0.33,1
+subgroups,0.1,0.598,1.812121212121212

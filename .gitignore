@@ -1,0 +1,17 @@
+# R and RStudio
+.Rproj.user/
+.Rprofile
+.Rhistory
+.RData
+.Ruserdata
+Rplots.pdf
+
+# renv: the lockfile and activate script are tracked; the package library is
+# ignored by renv/.gitignore and rebuilt with renv::restore()
+
+# macOS
+.DS_Store
+
+# local only: earlier analyses and extra checks kept in case reviewers ask
+_archive/
+backup-robustness/

@@ -1,0 +1,16 @@
+account,window,n_both_near,p_both_near,ratio_both_near
+continuous,0,12,0.012,Inf
+no_variation,0,0,0,NA
+subgroups,0,8,0.008,Inf
+continuous,1,77,0.077,77
+no_variation,1,1,0.001,1
+subgroups,1,64,0.064,64
+continuous,2,193,0.193,17.545454545454547
+no_variation,2,11,0.011,1
+subgroups,2,160,0.16,14.545454545454547
+continuous,3,371,0.371,8.833333333333332
+no_variation,3,42,0.042,1
+subgroups,3,304,0.304,7.238095238095237
+continuous,4,553,0.553,4.007246376811594
+no_variation,4,138,0.138,1
+subgroups,4,504,0.504,3.652173913043478
