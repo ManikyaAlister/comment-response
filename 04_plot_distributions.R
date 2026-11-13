@@ -101,7 +101,7 @@ plotHeading <- function(heading){
                                       gp = grid::gpar(fontsize = 15, fontface = "bold")))
 }
 
-distribution_plot <- plotHeading("A. Results reported by Shepherdson (2026)") /
+distribution_plot <- plotHeading("A. Extension of results reported by Shepherdson (2026)") /
   (p_n_ind + p_n_dep) / (p_med_ind + p_med_dep) /
   (p_cor_all + p_cor_class) / (p_cor_unclass + p_ordered) /
   plotHeading("B. How often both observed counts occur together (new analyses)") /
