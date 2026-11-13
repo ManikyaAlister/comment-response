@@ -2,6 +2,8 @@
 
 Code and data for our reply to Shepherdson's (2026) commentary, *Individual differences or unsystematic noise?*, on Alister et al. (2025, *Psychological Science*). Every number and figure in the reply is produced by the scripts here. [Where each result comes from](#where-each-result-comes-from) maps each one to the script and output that produce it.
 
+Claude Code was used to help generate this README. 
+
 ## Reproducing the results
 
 1. Install R (we used R 4.5.3) and open `response-analyses.Rproj` in RStudio, or start R in this folder.
