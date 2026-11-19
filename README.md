@@ -46,7 +46,7 @@ All proportions are out of 1000 simulated datasets. "Times more often" compares 
 | Typical median effect among participants more persuaded by dependent consensus | about −9.5 under every model | `03_simulate_accounts.R` | `results/03_reproduce_counts.csv` (`median_median_dependent`) |
 | Figure 2 | | `04_plot_distributions.R` | `results/04_distributions.png` |
 | **Robustness checks (footnotes)** | | | |
-| Results for τ = 2.5, 3.45, 4 and 5 | systematic models above noise only at every τ; correlation matched most often at τ = 3.45 | `robustness/01_tau_sensitivity.R` | `robustness/results/01_tau_sensitivity.csv` |
+| Results for τ = 1.75, 2.5, 3.45, 4 and 5 (roughly half to one and a half times our estimate) | systematic models above noise only at every τ; correlation matched most often at τ = 3.45 | `robustness/01_tau_sensitivity.R` | `robustness/results/01_tau_sensitivity.csv` |
 | Both counts within 0 to 4 participants of ours | systematic models above noise only at every window (4 to 77 times) | `robustness/02_window_sensitivity.R` | `robustness/results/02_window_sensitivity.csv` |
 | Between-session correlation within .025 to .1 of ours | 1.8 to 2.4 times as often as noise only | `robustness/02_window_sensitivity.R` | `robustness/results/02_window_sensitivity_correlation.csv` |
 
@@ -60,7 +60,7 @@ All proportions are out of 1000 simulated datasets. "Times more often" compares 
 | `03_simulate_accounts.R` | Simulates 1000 datasets under each of three models (noise only, noise + continuous differences, noise + subgroups) and computes the same individual-level results as Shepherdson's simulations in each. |
 | `04_plot_distributions.R` | Figure 2, from the simulations saved by 03. |
 | `05_plot_likelihood_ratios.R` | Figure 1, from the simulations saved by 02. |
-| `robustness/01_tau_sensitivity.R` | Reruns the simulations in 03 with τ = 2.5, 3.45, 4 and 5. |
+| `robustness/01_tau_sensitivity.R` | Reruns the simulations in 03 with τ = 1.75, 2.5, 3.45, 4 and 5. |
 | `robustness/02_window_sensitivity.R` | Recomputes the window-based results of 03 with narrower and wider windows, from the simulations saved by 03. |
 | `run_all.R` | Runs all of the above in order. |
 

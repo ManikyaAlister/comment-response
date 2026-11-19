@@ -10,6 +10,9 @@ load(here("results/03_simulations.Rdata"))
 
 account_labels <- c(no_variation = "Noise only", continuous = "Noise + continuous differences",
                     subgroups = "Noise + subgroups")
+# text size for every panel (the figure is printed at about half its saved size)
+base_size <- 18
+
 account_colours <- c("Noise only" = "#2a78d6", "Noise + continuous differences" = "#eb6834",
                      "Noise + subgroups" = "#1baf7a")
 
@@ -26,20 +29,20 @@ plotDistribution <- function(result, title, xlab, binwidth){
     geom_vline(xintercept = observed[[result]], linetype = "dashed") +
     scale_colour_manual(values = account_colours) +
     labs(title = title, x = xlab, y = "Simulations", colour = "Account") +
-    theme_classic()
+    theme_classic(base_size = base_size)
 }
 
 p_n_ind <- plotDistribution("n_independent", "Independent > dependent", "Number of participants", 1)
 p_n_dep <- plotDistribution("n_dependent", "Dependent > independent", "Number of participants", 1)
-p_med_ind <- plotDistribution("median_independent", "Median effect, independent > dependent",
+p_med_ind <- plotDistribution("median_independent", "Median, independent > dependent",
                               "Source independence effect", 1)
-p_med_dep <- plotDistribution("median_dependent", "Median effect, dependent > independent",
+p_med_dep <- plotDistribution("median_dependent", "Median, dependent > independent",
                               "Source independence effect", 1)
-p_cor_all <- plotDistribution("cor_all", "Between-session correlation, all participants",
+p_cor_all <- plotDistribution("cor_all", "Session correlation, all",
                               "Pearson's r", 0.05)
-p_cor_class <- plotDistribution("cor_classified", "Between-session correlation, classified",
+p_cor_class <- plotDistribution("cor_classified", "Session correlation, classified",
                                 "Pearson's r", 0.05)
-p_cor_unclass <- plotDistribution("cor_unclassified", "Between-session correlation, unclassified",
+p_cor_unclass <- plotDistribution("cor_unclassified", "Session correlation, unclassified",
                                   "Pearson's r", 0.05)
 
 # ordered independent - dependent differences: median and middle 90% of
@@ -60,9 +63,9 @@ p_ordered <- ordered_differences %>%
             aes(x = rank, y = difference), inherit.aes = FALSE, linetype = "dashed") +
   scale_colour_manual(values = account_colours) +
   scale_fill_manual(values = account_colours, guide = "none") +
-  labs(title = "Independent vs. dependent consensus", x = "Participant (ordered by difference)",
+  labs(title = "Ordered differences", x = "Participant (ordered by difference)",
        y = "Belief difference", colour = "Account") +
-  theme_classic()
+  theme_classic(base_size = base_size)
 
 # both counts together: each point is a combination of counts, sized by the
 # number of simulations producing it. The dashed box marks counts within 2
@@ -77,9 +80,9 @@ p_joint <- sim_summaries %>%
   annotate("point", x = observed$n_independent, y = observed$n_dependent, shape = 4, size = 3, stroke = 1.2) +
   scale_colour_manual(values = account_colours) +
   scale_size_area(max_size = 4, guide = "none") +
-  labs(title = "Both counts", x = "Independent > dependent (participants)",
-       y = "Dependent > independent (participants)", colour = "Account") +
-  theme_classic()
+  labs(title = "Both counts", x = "Independent > dependent",
+       y = "Dependent > independent", colour = "Account") +
+  theme_classic(base_size = base_size)
 
 # proportion of simulations with both counts within 2 participants of ours
 p_near <- sim_summaries %>%
@@ -88,25 +91,30 @@ p_near <- sim_summaries %>%
                                  abs(n_dependent - observed$n_dependent) <= 2)) %>%
   ggplot(aes(x = account, y = p_both_near, fill = account)) +
   geom_col(width = 0.6, show.legend = FALSE) +
-  geom_text(aes(label = sub("^0", "", sprintf("%.3f", p_both_near))), vjust = -0.4) +
+  geom_text(aes(label = sub("^0", "", sprintf("%.3f", p_both_near))), vjust = -0.4,
+            size = base_size / .pt) +
   scale_fill_manual(values = account_colours) +
   scale_x_discrete(labels = c("Noise\nonly", "Noise +\ncontinuous", "Noise +\nsubgroups")) +
-  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
   labs(title = "Both counts within 2 of observed", x = NULL, y = "Proportion of simulations") +
-  theme_classic()
+  theme_classic(base_size = base_size)
 
 # section headings: the commentary's results first, then both counts together
 plotHeading <- function(heading){
   wrap_elements(full = grid::textGrob(heading, x = 0, hjust = 0,
-                                      gp = grid::gpar(fontsize = 15, fontface = "bold")))
+                                      gp = grid::gpar(fontsize = base_size * 1.3, fontface = "bold")))
 }
 
 distribution_plot <- plotHeading("A. Extension of results reported by Shepherdson (2026)") /
   (p_n_ind + p_n_dep) / (p_med_ind + p_med_dep) /
   (p_cor_all + p_cor_class) / (p_cor_unclass + p_ordered) /
-  plotHeading("B. How often both observed counts occur together (new analyses)") /
+  plotHeading("B. Both counts together (new analyses)") /
   (p_joint + p_near) +
-  plot_layout(guides = "collect", heights = c(0.15, 1, 1, 1, 1, 0.15, 1)) &
-  theme(legend.position = "bottom")
+  plot_layout(guides = "collect", heights = c(0.18, 1, 1, 1, 1, 0.18, 1)) &
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = base_size * 1.1),
+        legend.title = element_blank(),
+        legend.key.width = unit(1, "cm")) &
+  guides(colour = guide_legend(override.aes = list(linewidth = 1.5)))
 
-ggsave(here("results/04_distributions.png"), distribution_plot, width = 9, height = 16)
+ggsave(here("results/04_distributions.png"), distribution_plot, width = 11, height = 18)

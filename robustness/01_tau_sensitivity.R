@@ -1,7 +1,7 @@
 
 # Do the results of 03 depend on the exact amount of individual variation (tau)?
-# Reruns the accounts with a range of taus around our estimate (3.45; the
-# bias-corrected value is about 4 and its approximate 90% interval is 2.3 to 5.5).
+# Reruns the accounts with taus from roughly half to one and a half times our
+# estimate (3.45).
 # Also checks the median effects, which larger taus should push further from ours,
 # and how often the between-session correlation across all participants is within
 # .05 of ours (a window, because larger taus overshoot our correlation).
@@ -9,7 +9,7 @@
 source(here::here("00_setup.R"))
 
 observed <- summariseParticipants(analyseParticipants(data))
-taus <- c(2.5, round(getTau(fitModel(formula_slopes, data)), 2), 4, 5)
+taus <- c(1.75, 2.5, round(getTau(fitModel(formula_slopes, data)), 2), 4, 5)
 
 # noise only does not depend on tau, so it is run once (tau = 0)
 settings <- rbind(data.frame(account = "no_variation", tau = 0),
